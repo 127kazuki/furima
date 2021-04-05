@@ -22,21 +22,20 @@
 
 ## items テーブル
 
-| Column        | Type          | Options     |
-| ------------- | ------------- | ----------- |
-| image         | ActiveStorage | null: false |
-| title         | string        | null: false |
-| explain       | text          | null: false |
-| category      | string        | null: false |
-| status        | string        | null: false |
-| delivery_pay  | string        | null: false |
-| delivery_area | string        | null: false |
-| delivery_day  | string        | null: false |
-| user_id       | references    | null: false, foreign_key: true |
+| Column           | Type          | Options     |
+| ---------------- | ------------- | ----------- |
+| title            | string        | null: false |
+| explain          | text          | null: false |
+| category_id      | integer        | null: false |
+| status_id        | integer        | null: false |
+| delivery_pay_id  | integer        | null: false |
+| delivery_area_id | integer        | null: false |
+| delivery_day_id  | integer        | null: false |
+| user             | references    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :buying
 
 
@@ -50,22 +49,22 @@
 | street        | string      | null: false |
 | building      | string      |             |
 | phone_number  | string      | null: false |
-| buying_id     | references  | null: false, foreign_key: true |
+| buying        | references  | null: false, foreign_key: true |
 
 
 ### Association
-- belongs_to :users
-- belongs_to :buyings
+- belongs_to :user
+- belongs_to :buying
 
 ## buyings テーブル
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
-| user_id  | references | null: false, foreign_key: true |
-| items_id | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| items    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 - has_one :buyer
