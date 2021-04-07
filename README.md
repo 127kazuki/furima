@@ -25,12 +25,12 @@
 | ---------------- | ------------- | ----------- |
 | title            | string        | null: false |
 | explain          | text          | null: false |
-| category_id      | integer        | null: false |
-| status_id        | integer        | null: false |
-| delivery_pay_id  | integer        | null: false |
-| delivery_area_id | integer        | null: false |
-| delivery_day_id  | integer        | null: false |
-| price            | string         | null: false
+| category_id      | integer       | null: false |
+| status_id        | integer       | null: false |
+| delivery_pay_id  | integer       | null: false |
+| delivery_area_id | integer       | null: false |
+| delivery_day_id  | integer       | null: false |
+| price            | integer       | null: false |
 | user             | references    | null: false, foreign_key: true |
 
 ### Association
@@ -41,15 +41,15 @@
 
 ## buyers テーブル
 
-| Column        | Type        | Options     |
-| ------------- | ----------- | ----------- |
-| zip_code      | string      | null: false |
-| prefecture_id | integer     | null: false |
-| city          | string      | null: false |
-| street        | string      | null: false |
-| building      | string      |             |
-| phone_number  | string      | null: false |
-| buying        | references  | null: false, foreign_key: true |
+| Column           | Type        | Options     |
+| ---------------- | ----------- | ----------- |
+| zip_code         | string      | null: false |
+| delivery_area_id | integer     | null: false |
+| city             | string      | null: false |
+| street           | string      | null: false |
+| building         | string      |             |
+| phone_number     | string      | null: false |
+| buying           | references  | null: false, foreign_key: true |
 
 
 ### Association
