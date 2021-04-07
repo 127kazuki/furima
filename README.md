@@ -16,7 +16,6 @@
 ### Association
 
 - has_many :items
-- has_one :buyer
 - has_many :buyings
 
 
@@ -31,6 +30,7 @@
 | delivery_pay_id  | integer        | null: false |
 | delivery_area_id | integer        | null: false |
 | delivery_day_id  | integer        | null: false |
+| price            | string         | null: false
 | user             | references    | null: false, foreign_key: true |
 
 ### Association
@@ -53,7 +53,6 @@
 
 
 ### Association
-- belongs_to :user
 - belongs_to :buying
 
 ## buyings テーブル
@@ -61,7 +60,7 @@
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
 | user     | references | null: false, foreign_key: true |
-| items    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
