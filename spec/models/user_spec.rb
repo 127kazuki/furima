@@ -48,7 +48,40 @@ end
  end
 
  it "全ての値が正しければ登録できる" do
+  expect(@user).to be_valid
+ end
+
+ it "emailに@が含まれないと登録できない" do
+  @user.email = 'testexample'
   @user.valid?
+expect(@user.errors.full_messages).to include("Email is invalid")
+ end
+
+ it "emailが一意性でないと登録できない" do
+  @user.save
+  another_user = FactoryBot.build(:user)
+  another_user.email = @user.email
+  another_user.valid?
+  expect(another_user.errors.full_messages).to include('Email has already been taken')
+end
+
+ it "passwordは6文字以上でないと登録できない" do
+  @user.password = '1111a'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+ end
+
+ it "passwordは英数混合でないと登録できない" do
+  @user.password = '111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+ end
+
+ it "passwordとpassword_comfirmationが同じでないと登録できない" do
+  @user.password = '111111'
+  @user.password = '111112'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
  end
 
    end
