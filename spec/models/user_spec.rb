@@ -46,5 +46,10 @@ end
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
  end
+
+ it "全ての値が正しければ登録できる" do
+  @user.valid?
+ end
+
    end
  end
