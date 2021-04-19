@@ -81,13 +81,43 @@ end
       expect(@user.errors.full_messages).to include("Password is invalid")
  end
 
- it "passwordとpassword_comfirmationが同じでない" do
-  @user.password = '111111'
-  @user.password = '111112'
+ it "passwordが全角" do
+  @user.password = '１１１１１１'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
  end
 
+ it "passwordとpassword_comfirmationが同じでない" do
+  @user.password = '111111'
+  @user.password_confirmation = '111112'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+ end
+
+ it "last_nameが漢字・平仮名・カタカナ以外" do
+  @user.last_name = 'test'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
+ end
+
+ it "first_nameが漢字・平仮名・カタカナ以外" do
+  @user.first_name = 'test'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+ end
+
+ it "last_name_kanaが全角カタカナ以外" do
+  @user.last_name_kana = 'ｱｱｱ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+ end
+
+ it "first_name_kanaが全角カタカナ以外" do
+  @user.first_name_kana = 'ｱｱｱ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+ end
+ 
     end
    end
  end

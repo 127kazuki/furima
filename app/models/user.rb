@@ -12,10 +12,10 @@ class User < ApplicationRecord
           validates :nickname
           validates :email, uniqueness: true, format: { with: EMAIL_REGEX }
           validates :password, confirmation: true, length: { minimum: 6 }, format: { with: PASSWORD_REGEX }
-          validates :last_name
-          validates :first_name
-          validates :last_name_kana
-          validates :first_name_kana
+          validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ } 
+          validates :first_name,format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+          validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/}
+          validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/}
           validates :birthday
          end
 end
