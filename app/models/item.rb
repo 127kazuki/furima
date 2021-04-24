@@ -11,9 +11,19 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :explain
-    validates :price
+    validates :category
+    validates :status
+    validates :delivery_area
+    validates :delivery_day
+    validates :delivery_pay
+    validates :price, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
-  validates :category_id, :status_id, :delivery_pay_id, :delivery_day_id, :delivery_area_id, numericality: { other_than: 1 } 
-
+  eith_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :status_id
+  validates :delivery_pay_id
+  validates :delivery_day_id
+  validates :delivery_area_id
+  end
 end
