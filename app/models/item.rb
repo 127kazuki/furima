@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :price, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
-  eith_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1 } do
   validates :category_id
   validates :status_id
   validates :delivery_pay_id
