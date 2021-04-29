@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
          with_options presence: true do
           PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-          EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+          EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
           validates :nickname
           validates :email, uniqueness: true, format: { with: EMAIL_REGEX }
           validates :password, confirmation: true, length: { minimum: 6 }, format: { with: PASSWORD_REGEX }
