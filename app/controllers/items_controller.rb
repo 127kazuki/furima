@@ -6,12 +6,11 @@ class ItemsController < ApplicationController
   end
 
   def new
-    authenticate_user!
     @item = Item.new
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
        redirect_to root_path
     else
