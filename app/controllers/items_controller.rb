@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, except: [ :index, :show]
+  before_action :baria_user, only: [:edit, :update]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -40,6 +41,12 @@ end
   private
   def item_params
     params.require(:item).permit(:image,:title,:explain,:category_id,:status_id,:delivery_pay_id,:delivery_day_id,:delivery_area_id,:price).merge(user_id: current_user.id)
+  end
+
+  def baria_user
+    unless Item.find(params[:id]).user.id.to_i == current_user.id
+        redirect_to root_path
+    end
   end
 
 end
