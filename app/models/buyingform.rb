@@ -1,6 +1,6 @@
-class クラス名
+class BuyingForm
   include ActiveModel::Model
-  attr_accessor :zip_code, :delivery_area_id, :city, :street, :building, :phone_number
+  attr_accessor :zip_code, :delivery_area_id, :city, :street, :building, :phone_number,
 
   with_options presence: true do
     validates :zip_code, format: { with: /\A\d{3}[-]\d{4}\z/ } 
@@ -11,6 +11,7 @@ class クラス名
   end
 
   def save
-    # 各テーブルにデータを保存する処理を書く
+    @buying.save
+    @buyer.save
   end
 end
