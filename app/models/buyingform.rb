@@ -1,7 +1,6 @@
 class Buyingform
   include ActiveModel::Model
-  attr_accessor :zip_code, :delivery_area_id, :city, :street, :building, :phone_number, :card_num, :exe_month, :exe_year, :security_code, :item_id, :authenticity_token, :commit
-
+  attr_accessor :zip_code, :delivery_area_id, :city, :street, :building, :phone_number, :item_id, :user_id
 
   with_options presence: true do
     validates :zip_code, format: { with: /\A\d{3}[-]\d{4}\z/ } 
@@ -12,8 +11,9 @@ class Buyingform
   end
 
   def save
-    Buyer.create(zip_code: zip_code, delivery_area_id: delivery_area_id, city: city, street: street, building: building, phone_number: phone_number )
-    Buying.create( card_num: card_num, exe_month: exe_month, exe_year: exe_year, security_code: security_code, item_id: item_id)
+    buying = Buying.create!(item_id: @item_id, user_id: user_id)
+    Buyer.create(zip_code: zip_code, delivery_area_id: delivery_area_id, city: city, street: street, building: building,
+                 phone_number: phone_number, buying_id: buying.id )
   end
     
     

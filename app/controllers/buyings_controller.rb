@@ -2,14 +2,14 @@ class BuyingsController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    @buying = Buyingform.new(buying_params)
+    @buying = Buyingform.new
   end
 
 
   def create
     @item = Item.find(params[:item_id])
-    @buying = Buyingform.new
-    if 
+    @buying = Buyingform.new(buying_params)
+    if
       @buying.valid?
       @buying.save
       redirect_to root_path
@@ -21,8 +21,7 @@ class BuyingsController < ApplicationController
 
   private
   def buying_params
-    params.permit(:zip_code, :delivery_area_id, :city, :street, :building, :phone_number, :card_num, :exe_month, :exe_year, :security_code, :authenticity_token, :commit, :item_id
-    )
+    params.require(:buyingform).permit(:zip_code, :delivery_area_id, :city, :street, :building, :phone_number, :user_id, :item_id)
   end
 
 end
