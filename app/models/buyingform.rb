@@ -11,7 +11,7 @@ class Buyingform
   end
 
   def save
-    buying = Buying.create!(item_id: @item_id, user_id: user_id)
+    buying = Buying.create(item_id: item_id, user_id: user_id)
     Buyer.create(zip_code: zip_code, delivery_area_id: delivery_area_id, city: city, street: street, building: building,
                  phone_number: phone_number, buying_id: buying.id )
   end
