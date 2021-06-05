@@ -6,6 +6,6 @@ FactoryBot.define do
       street             {'銀座'}
       building             {''}
       phone_number            {'090-0000-0000'}
-      buying_id       {1}
+      association :buying
   end
 end
